@@ -1,0 +1,38 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus TCP Server</title>
+</head>
+<body>
+    <h1>Modbus TCP Server</h1>
+    <p>Status: {{ status }}</p>
+    <button onclick="location.href = '{{ url_for('start_server') }}';">Start</button>
+    <button onclick="location.href = '{{ url_for('stop_server') }}';">Stop</button>
+    <h2>Registers</h2>
+    <form action="{{ url_for('update_registers') }}" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i, value in enumerate(registers) %}
+                <tr>
+                    <td>{{ i }}</td>
+                    <td>
+                        <input type="number" name="register_{{ i }}" value="{{ value }}" min="0" max="65535">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="submit" value="Update Registers">
+    </form>
+</body>
+</html>
+
