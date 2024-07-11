@@ -4,7 +4,7 @@ import threading
 import time
 app = Flask(__name__)
 # 建立 Modbus 伺服器
-server = ModbusServer("0.0.0.0", 502, no_block=True)
+server = ModbusServer("127.0.0.1", 502, no_block=True)
 server.start()
 # 設定初始數值
 holding_registers = [0] * 10

@@ -1,4 +1,8 @@
-
+#ifdef ESP8266
+#include <ESP8266WiFi.h>
+#else //ESP32
+#include <WiFi.h>
+#endif
 #include <ModbusIP_ESP8266.h>
 const int LED_COIL = 100; //Modbus Registers Offsets
 int ledPin = 2; //Used Pins, 2 = D4 = GPIO2 
@@ -31,7 +35,7 @@ void setup() {
 }
 void loop() {
   mb.task();   //Call once inside loop() - all magic here
-  digitalWrite(ledPin, mb.Coil(LED_COIL));  //Attach ledPin to LED_COIL register
+  digitalWrite(LED_BUILTIN, mb.Coil(LED_COIL));  //Attach ledPin to LED_COIL register
   WiFiClient client = server.available();  // Check if a client has connected
   if (!client) { // Wait until the client sends some data
     return;

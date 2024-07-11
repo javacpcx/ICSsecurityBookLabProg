@@ -1,0 +1,5 @@
+1. Lab4-ServerPlcModbusUI，與Lab4-ClientPlcModbusUI、ICDT MODBUS TCP Client進行Modbus通訊。
+2. Lab4-newServerPlcModbusUI，與Lab4-newClientPlcModbusUI、ICDT MODBUS TCP Client進行Modbus通訊。
+3. Lab4-ClientPlcModbusUI.py 可指定Server端IP。
+4. Lab4-newClientPlcModbusUI 固定Server端IP。
+5. Lab4-ServerPlcModbusUI資料固定；Lab4-newServerPlcModbusUI資料可隨機生成。

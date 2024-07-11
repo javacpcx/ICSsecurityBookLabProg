@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modbus TCP Server</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Modbus TCP Server Status: {{ status }}</h1>
+    <h2>Coils</h2>
+    <div id="coils">
+        <!-- Coils values will be loaded here -->
+    </div>
+    <h2>Registers</h2>
+    <div id="registers">
+        <!-- Register values will be loaded here -->
+    </div>
+
+    <script>
+        function loadData() {
+            $.getJSON("/get_data", function (data) {
+                var coilsHtml = "";
+                for (var i = 0; i < data.coils.length; i++) {
+                    coilsHtml += "<p>Coil " + i + ": " + data.coils[i] + "</p>";
+                }
+                $("#coils").html(coilsHtml);
+
+                var registersHtml = "";
+                for (var i = 0; i < data.registers.length; i++) {
+                    registersHtml += "<p>Register " + i + ": " + data.registers[i] + "</p>";
+                }
+                $("#registers").html(registersHtml);
+            });
+        }
+
+        function randomizeData() {
+            $.getJSON("/randomize_data", function (data) {
+                var coilsHtml = "";
+                for (var i = 0; i < data.coils.length; i++) {
+                    coilsHtml += "<p>Coil " + i + ": " + data.coils[i] + "</p>";
+                }
+                $("#coils").html(coilsHtml);
+
+                var registersHtml = "";
+                for (var i = 0; i < data.registers.length; i++) {
+                    registersHtml += "<p>Register " + i + ": " + data.registers[i] + "</p>";
+                }
+                $("#registers").html(registersHtml);
+            });
+        }
+
+        $(document).ready(function () {
+            $("#refresh_button").click(function () {
+                loadData();
+            });
+
+            $("#randomize_button").click(function () {
+                randomizeData();
+            });
+
+            loadData();  // Load data when the page loads
+        });
+    </script>
+    <button id="refresh_button">Refresh Data</button>
+    <button id="randomize_button">Randomize Data</button>
+</body>
+
+</html>

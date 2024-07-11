@@ -3,7 +3,7 @@ import requests
 import time
 import tkinter as tk
 # 建立 Modbus 客户端
-client = ModbusClient(host="127.0.0.1", port=502)
+client = ModbusClient(host="0.0.0.0", port=502)
 api_url = "http://127.0.0.1:8080/api/get_registers"
 # 建置Tkinter界面
 root = tk.Tk()
