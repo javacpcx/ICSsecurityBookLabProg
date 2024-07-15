@@ -1,0 +1,40 @@
+PROGRAM program0
+  VAR
+    Y0 AT %IX100.0 : BOOL;
+    Y1 AT %IX100.1 : BOOL;
+    Y2 AT %IX100.2 : BOOL;
+    Y3 AT %IX100.3 : BOOL;
+    Y4 AT %IX100.4 : BOOL;
+    D0 AT %QW104 : WORD;
+    D1 AT %QW105 : WORD;
+    D2 AT %QW106 : WORD;
+    D3 AT %QW107 : WORD;
+    M1 AT %IW100 : INT;
+    M2 AT %IW101 : INT;
+    M3 AT %IW102 : INT;
+    M4 AT %IW103 : INT;
+  END_VAR
+  VAR
+    TOF0 : TOF;
+    TON0 : TON;
+    _TMP_OR9_OUT : BOOL;
+    _TMP_GT16_OUT : BOOL;
+  END_VAR
+
+  _TMP_OR9_OUT := OR(Y0, Y1);
+  Y0 := _TMP_OR9_OUT;
+  TON0(IN := Y3, PT := T#500ms);
+  TOF0(IN := TON0.Q, PT := T#500ms);
+  Y3 := TOF0.Q;
+  _TMP_GT16_OUT := GT(M1, M2);
+  Y3 := _TMP_GT16_OUT;
+END_PROGRAM
+
+
+CONFIGURATION Config0
+
+  RESOURCE Res0 ON PLC
+    TASK task0(INTERVAL := T#20ms,PRIORITY := 0);
+    PROGRAM instance0 WITH task0 : program0;
+  END_RESOURCE
+END_CONFIGURATION

@@ -1,0 +1,6 @@
+1. 進入OpenPLC Editor，點選File/Tutorials and Examples，選擇範例13. Traffic_Light_FBD
+2. 設定O_LEDRed的Location %QX1.1
+3. 設定O_LEDOrange的Location %QX0.5
+4. 設定O_LEDGreen的Location %QX0.6
+5. 點選圖示按鈕"Transfer Program to PLC"，點選I/O Config，Digital Outputs順序要修改為"01, 02, 03, 04, 05, 12, 13, 14, 15, 16"
+6. 點選Transfer，選擇好ESP32(若沒有驅動程式，按照書本指示操作安裝)，按下"Transfer to PLC"。上傳的字出現時，長按ESP32的RESET按鈕2秒後放開，上傳才會正常。
